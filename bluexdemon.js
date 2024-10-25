@@ -916,9 +916,6 @@ case 'gclink':
 case 'grouplink':
 case 'gruplink': {
     if (!m.isGroup) return reply('This command can only be used in groups.');
-    if (!isAdmins && !isGroupOwner && !isOwner) return reply('Only admins or the group owner can use this command.');
-    if (!isBotAdmins) return reply('I need admin privileges to perform this action.');
-
     try {
         let response = await byxx.groupInviteCode(m.chat);
         let groupMetadata = await byxx.groupMetadata(m.chat);
