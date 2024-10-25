@@ -1358,7 +1358,7 @@ case 'hidetag': {
 case 'tagall': {
     if (!m.isGroup) return reply(mess.group);
     if (!isAdmins && !isGroupOwner && !isCreator && !isPremium) return reply(mess.admin);
-    if (!isBotAdmins && !isCreator && !isPremium) return reply(mess.botAdmin);
+    if (!isBotAdmins && !isOwner && !isPremium) return reply(mess.botAdmin);
     
     // Check if the sender is the owner
     if (!isOwner) return reply('Only the owner can use this command.');
