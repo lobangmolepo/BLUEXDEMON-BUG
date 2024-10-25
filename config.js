@@ -26,8 +26,8 @@ global.delayjpm = 5500
 global.codeInvite = ""
 global.imageurl = 'https://l.top4top.io/p_32188bbq00.jpg'
 global.isLink = 'https://whatsapp.com/channel/0029Vah3fKtCnA7oMPTPJm1h'
-global.packname = "𝙱𝙻𝚄𝙴 𝙳𝙴𝙼𝙾𝙽"
-global.author = "dev"
+global.packname = "𝙱𝙻𝚄𝙴 𝙳𝙴𝙼𝙾𝙽 ™"
+global.author = "𝕯𝖊𝖒𝖔𝖓"
 global.jumlah = "5"
 
 
