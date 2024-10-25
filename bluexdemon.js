@@ -1027,6 +1027,27 @@ case 'aza': {
     await byxx.sendText(m.chat, bankDetails, m);
     break;
 }
+case 'invite': {
+    if (!m.isGroup) return reply("This command can only be used in groups.");
+    if (!isBotAdmins) return reply("I need to be an admin to generate invite links.");
+    if (!text) return reply(`Enter the number you want to invite to the group.\n\nExample:\n*${prefix + command}* 255734980103`);
+    if (text.includes('+')) return reply(`Please enter the number without the "+" symbol.`);
+    if (isNaN(text)) return reply(`Please enter only numbers including your country code, without spaces.`);
+
+    let group = m.chat;
+    try {
+        let link = 'https://chat.whatsapp.com/' + await byxx.groupInviteCode(group);
+        await byxx.sendMessage(text + '@s.whatsapp.net', {
+            text: `≡ *GROUP INVITATION*\n\nYou are invited to join this group:\n\n${link}`,
+            mentions: [m.sender]
+        });
+        reply("An invite link has been sent to the user.");
+    } catch (error) {
+        console.error(error);
+        reply("Failed to send the invite link. Please check the number and try again.");
+    }
+    break;
+}
 case 'listblock': {
     // Check if the user is the owner or a premium user
     if (!isOwner && !isPremium) {
