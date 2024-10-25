@@ -43,7 +43,7 @@ const blue = fs.readFileSync(`./database/image/blue.jpg`)
 const bluex = fs.readFileSync(`./database/image/bluex.jpg`) 
 const bluexx = fs.readFileSync(`./database/image/bluexx.jpg`) 
 const zkosong = fs.readFileSync(`./database/image/zkosong.png`)
-
+const currentMode = byxx.public ? 'Public' : 'Private';
 const bugres = '𝗣𝗿𝗼𝗰𝗰𝗲𝘀 𝘀𝗲𝗻𝗱 𝗯𝘂𝗴☠️'
 const bugsuc = '『 𝐀𝐓𝐓𝐀𝐂𝐊𝐈𝐍𝐆 𝐒𝐔𝐂𝐂𝐄𝐒𝐒 』\n\n🩸⃟༑⌁⃰𝐙͈𝐞͢𝐫𝐨 𝐄𝐱ͯ͢𝐞𝐜𝐮͢𝐭𝐢𝐨𝐧 𝐕ͮ𝐚͢𝐮𝐥𝐭ཀ͜͡🦠\n\n  𝐍𝐎𝐓𝐄\n> ɪꜰ ᴛʜᴇ ᴛᴀʀɢᴇᴛ ɪꜱ ꜱᴛɪʟʟ ᴏɴʟɪɴᴇ, ᴊᴜꜱᴛ ʟᴇᴀᴠᴇ ɪᴛ, ʙᴜᴛ ᴛʜᴇ ᴛᴀʀɢᴇᴛ ᴡɪʟʟ ꜱᴛɪʟʟ ᴄʀᴀꜱʜ ᴘᴇʀᴍᴀɴᴇɴᴛʟʏ'
 // VIRTEX
@@ -530,9 +530,12 @@ darkphonk = fs.readFileSync('./database/haha.mp3')
 ┃✾ᐉ 𝐍𝐚𝐦𝐞 : *${pushname}*
 ┃✾ᐉ 𝐁𝐨𝐭 : *𝙱𝙻𝚄𝙴x𝙳𝙴𝙼𝙾𝙽*
 ┃✾ᐉ 𝐑𝐮𝐧 : *${run}*
+┃✾ᐉ 𝐌𝐨𝐝𝐞 : *${currentMode}*
 ┃✾ᐉ 𝐓𝐢𝐦𝐞 : *${time2}*
 ┗━━━━━━━━━━━━━━━━━━❐
 \`💞ᴘʀᴏᴛᴇᴄᴛ ᴛʜᴏꜱᴇ ʏᴏᴜ ʟᴏᴠᴇ💞\`
+         
+         *𝖜𝖍𝖔 𝖉𝖆𝖗𝖊𝖘*
 `;
 
     let sections = [
@@ -611,6 +614,7 @@ const bugmenu = `┏─── ｢ \`𝙱𝙻𝚄𝙴 𝙳𝙴𝙼𝙾𝙽͖\` �
 ┃✾ᐉ 𝐍𝐚𝐦𝐞 : *${pushname}*
 ┃✾ᐉ 𝐁𝐨𝐭 : *𝙱𝙻𝚄𝙴x𝙳𝙴𝙼𝙾𝙽*
 ┃✾ᐉ 𝐑𝐮𝐧 : *${run}*
+┃✾ᐉ 𝐌𝐨𝐝𝐞 : *${currentMode}*
 ┃✾ᐉ 𝐓𝐢𝐦𝐞 : *${time2}*
 ┗──────────────❐​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
 
@@ -710,6 +714,7 @@ const allmenu = `┏─── ｢ \`𝙱𝙻𝚄𝙴 𝙳𝙴𝙼𝙾𝙽͖\` �
 ┃✾ᐉ 𝐍𝐚𝐦𝐞 : *${pushname}*
 ┃✾ᐉ 𝐁𝐨𝐭 : *𝙱𝙻𝚄𝙴x𝙳𝙴𝙼𝙾𝙽*
 ┃✾ᐉ 𝐑𝐮𝐧 : *${run}*
+┃✾ᐉ 𝐌𝐨𝐝𝐞 : *${currentMode}*
 ┃✾ᐉ 𝐓𝐢𝐦𝐞 : *${time2}*
 ┗──────────────❐
 ┏─『 \`𝐎𝐖𝐍𝐄𝐑 𝐌𝐄𝐍𝐔\` 』
@@ -724,6 +729,7 @@ const allmenu = `┏─── ｢ \`𝙱𝙻𝚄𝙴 𝙳𝙴𝙼𝙾𝙽͖\` �
 │ ⑄ ᴜɴʙʟᴏᴄᴋ 
 │ ⑄ ᴍᴏᴅᴇ
 │ ⑄ ᴅᴇʟ
+│ ⑄ ᴊᴏɪɴ
 ┗─────────────❐
 
 ┏─『 \`𝐓𝐎𝐎𝐋𝐒 𝐌𝐄𝐍𝐔\` 』
@@ -733,14 +739,23 @@ const allmenu = `┏─── ｢ \`𝙱𝙻𝚄𝙴 𝙳𝙴𝙼𝙾𝙽͖\` �
 │ ⑄ ᴠᴠ
 │ ⑄ ɢᴇᴛꜱᴇꜱꜱɪᴏɴ 
 │ ⑄ ᴀᴜᴛᴏꜱᴛᴀᴛᴜꜱ
+│ ⑄ ʟɪꜱᴛʙʟᴏᴄᴋ 
+┗─────────────❐
+
+┏─『 \`𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃𝐄𝐑𝐒\` 』
+│ ⑄ ᴛɪᴋᴛᴏᴋ
+│ ⑄ 
+│ ⑄ 
 ┗─────────────❐
 
 ┏─『 \`𝐅𝐔𝐍 𝐌𝐄𝐍𝐔\` 』
 │ ⑄ ʜᴅᴠɪᴅᴇᴏ <ʀᴇᴘʟʏ ɪᴍᴀɢᴇ>
 │ ⑄ ꜱᴛɪᴄᴋᴇʀ <ʀᴇᴘʟʏ ɪᴍᴀɢᴇ>
+│ ⑄ 
 ┗─────────────❐
 
 ┏─『 \`𝐆𝐑𝐎𝐔𝐏 𝐌𝐄𝐍𝐔\` 』
+│ ⑄ ɢᴄʟɪɴᴋ
 │ ⑄ ꜱᴠᴄᴏɴᴛᴀᴄᴛ 
 │ ⑄ ʜɪᴅᴇᴛᴀɢ
 │ ⑄ ᴛᴀɢ 
@@ -823,6 +838,7 @@ const toolsmenu = `┏─── ｢ \`𝙱𝙻𝚄𝙴 𝙳𝙴𝙼𝙾𝙽͖\` 
 ┃✾ᐉ 𝐍𝐚𝐦𝐞 : *${pushname}*
 ┃✾ᐉ 𝐁𝐨𝐭 : *𝙱𝙻𝚄𝙴x𝙳𝙴𝙼𝙾𝙽*
 ┃✾ᐉ 𝐑𝐮𝐧 : *${run}*
+┃✾ᐉ 𝐌𝐨𝐝𝐞 : *${currentMode}*
 ┃✾ᐉ 𝐓𝐢𝐦𝐞 : *${time2}*
 ┗──────────────❐
 \`🩸⃟༑𝕴 𝕬𝕸 𝕳𝕴𝕸ཀ͜͡🦠\`
@@ -896,6 +912,31 @@ messageId: freesex.key.id
 })
 }
 break
+case 'gclink':
+case 'grouplink':
+case 'gruplink': {
+    if (!m.isGroup) return reply('This command can only be used in groups.');
+    if (!isAdmins && !isGroupOwner && !isOwner) return reply('Only admins or the group owner can use this command.');
+    if (!isBotAdmins) return reply('I need admin privileges to perform this action.');
+
+    try {
+        let response = await byxx.groupInviteCode(m.chat);
+        let groupMetadata = await byxx.groupMetadata(m.chat);
+        
+        let groupInfo = `👥 *GROUP LINK*\n` +
+                        `📛 *Name :* ${groupMetadata.subject}\n` +
+                        `👤 *Group Owner :* ${groupMetadata.owner ? '+' + groupMetadata.owner.split`@`[0] : 'Not known'}\n` +
+                        `🌱 *ID :* ${groupMetadata.id}\n` +
+                        `🔗 *Chat Link :* https://chat.whatsapp.com/${response}\n` +
+                        `👥 *Member :* ${groupMetadata.participants.length}\n`;
+
+        await byxx.sendText(m.chat, groupInfo, m);
+    } catch (error) {
+        console.error('Error fetching group link:', error);
+        return reply('Failed to retrieve the group link.');
+    }
+}
+break;
 case 'block': {
     if (!isOwner) return reply('This command is restricted to the owner.');
 
@@ -927,6 +968,37 @@ case 'block': {
     }
     break;
 }
+case 'tiktok': {
+    if (!text) return reply('Please provide a TikTok video link!');
+
+    // Validate the TikTok URL
+    if (!isUrl(text) || !text.includes('tiktok.com')) return reply('Invalid TikTok link!');
+
+    // Notify the user that the request is being processed
+    reply('Processing your request...');
+
+    try {
+        // Make a request to the ScrapingBee API to download the video
+        const response = await fetch(`https://app.scrapingbee.com/api/v1?api_key=307PB27BT6IYUBSDLAWR1BFHGZI8DGLADQ01EQQK633IOS1SWL4VJYIUFGE91U3TQAPPKUXDW5Q55S5T&url=${encodeURIComponent(text)}&render_js=1`);
+        
+        if (!response.ok) {
+            return reply('Failed to connect to the API. Please try again later.');
+        }
+
+        const data = await response.json();
+
+        if (data && data.video_url) {
+            // If a video URL is returned, send it to the user
+            await byxx.sendMessage(from, { video: { url: data.video_url } }, { quoted: m });
+        } else {
+            reply('Failed to retrieve the video. Please ensure the link is correct and try again.');
+        }
+    } catch (error) {
+        console.error('Error downloading TikTok video:', error);
+        reply('An unexpected error occurred. Please try again later.');
+    }
+    break;
+}
 case 'unmute': {
     // Check if the command is being used in a group
     if (!m.isGroup) return reply(mess.group);
@@ -944,6 +1016,29 @@ case 'unmute': {
     } catch (err) {
         console.error(err);
         reply('Failed to unmute the group. Please try again.');
+    }
+    break;
+}
+case 'listblock': {
+    // Check if the user is the owner or a premium user
+    if (!isOwner && !isPremium) {
+        return reply("You do not have the required permissions to use this command.");
+    }
+
+    try {
+        // Fetch the blocklist using your byxx file structure
+        let block = await byxx.fetchBlocklist();
+
+        // Prepare the message showing the number of blocked users and their details
+        let blockMessage = `*List of Blocked Users*:\n\n` +
+                           `Total: ${block === undefined || block.length === 0 ? '*0* blocked' : '*' + block.length + '* blocked'}\n` +
+                           block.map(v => '么 ' + v.replace(/@.+/, '')).join('\n');
+
+        // Send the blocklist as a reply
+        reply(blockMessage);
+    } catch (error) {
+        // Handle any errors, e.g., if fetching the blocklist fails
+        reply("Failed to retrieve the blocklist.");
     }
     break;
 }
@@ -1072,6 +1167,39 @@ case 'getsession': {
     } catch (error) {
         console.error(error);
         reply(`An error occurred: ${error.message}`);
+    }
+    break;
+}
+case 'join': {
+    if (!isOwner) return reply(mess.owner); // Check if the user is the owner
+    if (!text) return reply('Enter Group Link!');
+    if (!isUrl(text) || !text.includes('whatsapp.com')) return reply('Invalid Link!');
+
+    const result = text.split('https://chat.whatsapp.com/')[1];
+    reply('Processing your request...');
+    
+    try {
+        await byxx.groupAcceptInvite(result);
+        reply('Successfully joined the group!');
+    } catch (error) {
+        // Handle different error responses
+        if (error.response) {
+            switch (error.response.status) {
+                case 400:
+                    return reply('Group Not Found❗');
+                case 401:
+                    return reply('Bot Kicked From The Group❗');
+                case 409:
+                    return reply('Bot Has Already Joined the Group❗');
+                case 410:
+                    return reply('Group URL Has Been Reset❗');
+                case 500:
+                    return reply('Group Is Full❗');
+                default:
+                    return reply('An unknown error occurred.');
+            }
+        }
+        reply('An unexpected error occurred.');
     }
     break;
 }
@@ -1500,61 +1628,31 @@ case "jpm3": {
     m.reply(`Successfully sent messages to *${total} groups*.`);
 }
 break;
+case 'sticker': 
+case 's': {
+    if (!isOwner) return reply(mess.only.owner); // Check if the user is the owner
+    if (!quoted) return reply(`Send/Reply Images/Videos/Gifs With Captions ${prefix + command}\nVideo Duration: 1-9 Seconds`); // Check if there's a quoted message
 
-case 'payment': {
-let teks = `${monospace("PAYMENT")}
-
-*(E-WALLET)*
-
-   *DANA*
-- ${dana}
-
-Harap Setelah Transfer Anda Harus Mengasih Bukti Pembayaran Agar Di Verifikasi Oleh Owner, Tanks For You
-
-© ${storename}`
-byxx.sendMessage(from, { 
-text: teks,
-contextInfo:{
-forwardingScore: 9999999,
-isForwarded: true, 
-mentionedJid:[m.sender],
-"externalAdReply": {
-"showAdAttribution": true,
-"renderLargerThumbnail": false,
-"title": `QRIS? KLIK DISINI`,
-"body": `Date : ${wib}, ${tanggal}`,
-"containsAutoReply": true,
-"mediaType": 1, 
-"thumbnailUrl": "https://b.top4top.io/p_3194nb6rt0.jpeg",
-"sourceUrl": `${qris}`
+    if (/image/.test(mime)) { // If the quoted message is an image
+        let media = await quoted.download(); // Download the image
+        let encmedia = await byxx.sendStimg(from, media, m, { 
+            packname: global.packname, 
+            author: global.author 
+        }); // Send the image as a sticker
+        await fs.unlinkSync(encmedia); // Delete the temporary file
+    } else if (/video/.test(mime)) { // If the quoted message is a video
+        if ((quoted.msg || quoted).seconds > 11) return reply(`Send/Reply Images/Videos/Gifs With Captions ${prefix + command}\nVideo Duration: 1-9 Seconds`); // Check video length
+        let media = await quoted.download(); // Download the video
+        let encmedia = await byxx.sendStvid(from, media, m, { 
+            packname: global.packname, 
+            author: global.author 
+        }); // Send the video as a sticker
+        await fs.unlinkSync(encmedia); // Delete the temporary file
+    } else {
+        reply(`Send/Reply Images/Videos/Gifs With Captions ${prefix + command}\nVideo Duration: 1-9 Seconds`); // Handle unsupported media
+    }
 }
-}
-},{ 
-quoted: fkontak })
-await sleep(1500)
-}
-      break
-
-case "sticker": 
-case "stiker":
-case "s": {
-if (!isOwner) return reply(mess.only.owner)
-if (!quoted) return reply(`Kirim/Reply Gambar/Video/Gifs Dengan Caption ${prefix+command}\nDurasi Video 1-9 Detik`)
-if (/image/.test(mime)) {
-let media = await quoted.download()
-let encmedia = await byxx.sendStimg(from, media, m, { packname: global.packname, author: global.author })
-await fs.unlinkSync(encmedia)
-} else if (/video/.test(mime)) {
-if ((quoted.msg || quoted).seconds > 11) return reply('Kirim/Reply Gambar/Video/Gifs Dengan Caption ${prefix+command}\nDurasi Video 1-9 Detik')
-let media = await quoted.download()
-let encmedia = await byxx.sendStvid(from, media, m, { packname: global.packname, author: global.author })
-await fs.unlinkSync(encmedia)
-} else {
-reply(`Kirim/Reply Gambar/Video/Gifs Dengan Caption ${prefix+command}\nDurasi Video 1-9 Detik`)
-}
-}
-break
-
+break;
 case 'bluedid': case 'crazy': 
 if (!isPremium) return reply(mess.only.premium)
 if (!q) return reply(`Example: ${prefix + command} 62×××`)
@@ -1870,7 +1968,7 @@ const getname = await byxx.getName(mentionUser[0])
 const json = {
 "type": "quote",
 "format": "png",
-"backgroundColor": "#FFFFFF",
+"backgroundColor": "#1830c9",
 "width": 512,
 "height": 768,
 "scale": 2,
