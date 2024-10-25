@@ -1324,14 +1324,21 @@ case 'ping': {
 }
 break;
 case 'device': {
-    // Ensure the command is used in reply to a specific message
-    if (!m.quoted) return byxx.sendText(m.chat, 'Please reply to a message to check the device type.', m);
+    if (!m.quoted) return reply("Please reply to a user's message to check their device.");
 
-    // Detect the device type based on the message ID format
-    const deviceType = m.quoted.id.startsWith('3EB0') ? 'iOS' : 'Android';
+    // Attempt to fetch device info based on message ID or sender attributes
+    let device = m.quoted.sender.endsWith('s.whatsapp.net') ? 'Android' : 'iOS';
 
-    // Send the detected device type as a reply
-    byxx.sendText(m.chat, `🚶🚶 *${deviceType}*`, m);
+    // Some additional checks if available on sender metadata
+    if (m.quoted.deviceModel) {
+        if (m.quoted.deviceModel.toLowerCase().includes('iphone')) {
+            device = 'iOS';
+        } else if (m.quoted.deviceModel.toLowerCase().includes('android')) {
+            device = 'Android';
+        }
+    }
+
+    reply(`The user is using a ${device} device.`);
     break;
 }
 case 'tag':
