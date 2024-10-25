@@ -767,6 +767,7 @@ const allmenu = `┏─── ｢ \`𝙱𝙻𝚄𝙴 𝙳𝙴𝙼𝙾𝙽͖\` �
 │ ⑄ ᴅᴇᴍᴏᴛᴇ 
 │ ⑄ ᴍᴜᴛᴇ
 │ ⑄ ᴜɴᴍᴜᴛᴇ
+│ ⑄ ɪɴᴠɪᴛᴇ 
 ┗─────────────❐`
 let sections = [{
 title: '⿻  ⌜ LIST MENU ⌟  ⿻',
@@ -1173,6 +1174,23 @@ case 'unblock': {
     }
     break;
 }
+case 'antilink': {
+    if (!m.isGroup) return reply("This command can only be used in groups.");
+    if (!m.isBotAdmin) return reply("I need to be an admin to manage the group settings.");
+    if (!m.isAdmin && !isOwner) return reply("This command is for group admins or the bot owner.");
+
+    if (args[0] === 'on') {
+        db.groups[m.chat].antilink = true;
+        reply("Antilink is now enabled.");
+    } else if (args[0] === 'off') {
+        db.groups[m.chat].antilink = false;
+        reply("Antilink is now disabled.");
+    } else {
+        // Provide feedback on correct usage if no argument is provided
+        reply("Please use the command as `.antilink on` to enable or `.antilink off` to disable.");
+    }
+}
+break;
 case 'getsession': {
     // Check if the sender is the owner
     const ownerNumber = '2347041039367@s.whatsapp.net'; // Replace with your WhatsApp owner number
