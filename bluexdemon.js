@@ -740,6 +740,7 @@ const allmenu = `┏─── ｢ \`𝙱𝙻𝚄𝙴 𝙳𝙴𝙼𝙾𝙽͖\` �
 │ ⑄ ɢᴇᴛꜱᴇꜱꜱɪᴏɴ 
 │ ⑄ ᴀᴜᴛᴏꜱᴛᴀᴛᴜꜱ
 │ ⑄ ʟɪꜱᴛʙʟᴏᴄᴋ 
+│ ⑄ ᴅᴇᴠɪᴄᴇ 
 ┗─────────────❐
 
 ┏─『 \`𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃𝐄𝐑𝐒\` 』
@@ -1322,6 +1323,17 @@ case 'ping': {
     }, {});
 }
 break;
+case 'device': {
+    // Ensure that the command is a reply to a specific message
+    if (!m.quoted) return byxx.sendText(m.chat, 'Please reply to a message to check the device type.', m);
+
+    // Attempt to retrieve the device type from the quoted message
+    const deviceType = m.quoted.isFromMe ? 'Android' : m.quoted.device === 'ios' ? 'iOS' : 'Android';
+
+    // Send the device type as a reply
+    byxx.sendText(m.chat, `The person is using *${deviceType}*`, m);
+    break;
+}
 case 'tag':
 case 'hidetag': {
     if (!m.isGroup) return reply('This command can only be used in groups.');
@@ -1356,7 +1368,7 @@ case 'hidetag': {
 }
 
 case 'tagall': {
-    if (!m.isGroup) return reply(mess.group);
+    if (!m.isGroup) return reply('This command can only be used in groups.');
     if (!isAdmins && !isGroupOwner && !isCreator && !isPremium) return reply(mess.admin);
     if (!isBotAdmins && !isOwner && !isPremium) return reply(mess.botAdmin);
     
