@@ -24,6 +24,9 @@
     "fake-useragent": "^1.0.1",
     "file-type": "^16.5.3",
     "fluent-ffmpeg": "^2.1.2",
+    "form-data": "^4.0.0",
+    "@distube/ytdl-core": "^4.10.1",
+    "yt-search": "^2.10.3",
     "javascript-obfuscator": "^4.0.0",
     "jimp": "^0.16.1",
     "knights-canvas": "github:KirBotz/knights-canvas",
@@ -42,6 +45,7 @@
     "rimraf": "^3.0.2",
     "spinnies": "^0.5.1",
     "ssh2": "^1.14.0",
-    "util": "^0.12.5"
+    "util": "^0.12.5",
+    "wa-sticker-formatter": "^3.0.0"
   }
 }
