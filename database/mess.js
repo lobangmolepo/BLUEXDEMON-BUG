@@ -1,7 +1,7 @@
 require("./global")
 
 const mess = {
-   wait: "<!> `Wait Again for Dick Process`",
+   wait: "<!> `WAIT A SEC, PROCESSING`",
    success: "<!> `Full Success Veri-veri good`",
    on: "*`[ On Feature ]` - Already Active*", 
    off: "*`[ Off Feature ]` - It's Off *",
