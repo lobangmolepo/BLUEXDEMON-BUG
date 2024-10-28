@@ -1385,7 +1385,7 @@ case 'tt': {
 
 \`⏤͟͟͞͞ Downloaded By BLUEDEMON\`
         `;
-        byxx.sendMessage(m.chat, { caption: caption, video: { url: vidnya } }, { quoted: m })
+        byxx.sendMessage(m.chat, { caption: caption, video: { url: videoUrl } }, { quoted: m })
     }
     break;
 }
