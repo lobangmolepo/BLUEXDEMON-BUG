@@ -1372,7 +1372,7 @@ case 'tt': {
 
 \`𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃𝐄𝐃 𝐁𝐘 𝐁𝐋𝐔𝐄𝐃𝐄𝐌𝐎𝐍\`
 `;
-        byxx.sendMessage(m.chat, { video: { url: vidnya }, caption: caption }, { quoted: m });
+        byxx.sendMessage(m.chat, { caption: caption, video: { url: vidnya } }, { quoted: m })
     } catch {
         const response = await fetchJson(`https://api.tiklydown.eu.org/api/download/v3?url=${encodeURIComponent(text)}`);
         const videoUrl = response.result.video;
@@ -1385,7 +1385,7 @@ case 'tt': {
 
 \`⏤͟͟͞͞ Downloaded By BLUEDEMON\`
         `;
-        byxx.sendMessage(m.chat, { video: { url: videoUrl }, caption: captionn }, { quoted: m });
+        byxx.sendMessage(m.chat, { caption: caption, video: { url: vidnya } }, { quoted: m })
     }
     break;
 }
