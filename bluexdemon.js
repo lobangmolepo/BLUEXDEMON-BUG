@@ -37,6 +37,7 @@ function runtime(seconds) {
     
     return `${hours} hrs, ${minutes} mins, and ${secondsLeft} secs`;
 }
+const botname = "𝐁𝐋𝐔𝐄𝐗𝐃𝐄𝐌𝐎𝐍";
 const restrictedTargets = ['2347041039367']; // Add any other restricted numbers here
 // Example usage:
 let run = runtime(process.uptime());
@@ -728,7 +729,9 @@ case 'allmenu': {
 │ ⑄ ᴛɪᴋᴛᴏᴋ
 │ ⑄ ʏᴛꜱᴇᴀʀᴄʜ
 │ ⑄ ʏᴛꜱ
-│ ⑄ 
+│ ⑄ ᴘʟᴀʏ 
+│ ⑄ ꜱᴏɴɢ
+│ ⑄ ʏᴛᴠɪᴅᴇᴏꜱ 
 ┗─────────────❐
 
 ┏─『 \`𝐅𝐔𝐍 𝐌𝐄𝐍𝐔\` 』
@@ -1386,6 +1389,33 @@ case 'tt': {
     }
     break;
 }
+case 'ytvideo':
+case 'ytmp4': {
+    if (!text) return reply(`[ Example ] :\n> *.ytmp4 <youtube link>*`);
+    reply(mess.wait);
+
+    try {
+        reply('*The video sending process may take a few minutes for longer videos!*');
+
+        // Fetch the video data from the API
+        let response = await fetch(`https://widipe.com/download/ytdl?url=${text}`);
+        let proces = await response.json();
+
+        if (!proces.result || !proces.result.mp4) {
+            return reply("Failed to retrieve the video. Please check the link or try again later.");
+        }
+
+        let videoUrl = proces.result.mp4;
+        const caption = `*[ YOUTUBE DOWNLOADER ]*\n*Title:* ${proces.result.title}\n\n©${botname}`;
+
+        // Send the video
+        await byxx.sendMessage(m.chat, { video: { url: videoUrl }, caption: caption }, { quoted: m });
+    } catch (e) {
+        console.error(e); // Log detailed error
+        reply('*An error occurred while fetching the video:* ' + e.message);
+    }
+}
+break;
 case 'tag':
 case 'hidetag': {
     if (!m.isGroup) return reply('This command can only be used in groups.');
@@ -1496,7 +1526,50 @@ case "kick": {
     }
 }
 break;
+case 'play':
+case 'songs': {
+    reply(mess.wait);
+    let yts = require("yt-search");
+    
+    if (!text) return reply('*ERROR REQUEST!! EXAMPLE :*\n> *.ytmp3 <link youtube>*');
+    
+    try {
+        // Search for the video
+        let search = await yts(text);
+        let anup3k = search.videos[0];
+        let { title, thumbnail, url } = anup3k;
 
+        // Fetch the audio download link
+        let process = await (await fetch(`https://widipe.com/download/ytdl?url=${url}`)).json();
+        let audioUrl = process.result.mp3;
+
+        // Prepare the message document
+        let doc = {
+            audio: {
+                url: audioUrl
+            },
+            mimetype: 'audio/mp4',
+            fileName: `${title}.mp3`, // Ensure the file name has an extension
+            contextInfo: {
+                externalAdReply: {
+                    showAdAttribution: true,
+                    mediaType: 2,
+                    mediaUrl: url,
+                    title: title,
+                    sourceUrl: url,
+                    thumbnail: await (await byxx.getFile(thumbnail)).data // Use byxx for fetching the thumbnail
+                }
+            }
+        };
+
+        // Send the audio message
+        await byxx.sendMessage(m.chat, doc, { quoted: m });
+    } catch (e) {
+        console.error(e); // Log any errors for debugging
+        reply('*An error occurred:* ' + e.message); // Send error message
+    }
+}
+break;
 case 'closegroup': {
     if (!isGroup) return reply('This command can only be used in groups.');
     
