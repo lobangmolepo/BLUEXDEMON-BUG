@@ -697,17 +697,15 @@ case 'allmenu': {
 │ ⑄ ʀᴇꜱᴛᴀʀᴛ
 ┗─────────────❐
 
-┏─『 \`𝐓𝐎𝐎𝐋𝐒 𝐌𝐄𝐍𝐔\` 』
-│ ⑄ ᴜᴘᴅᴀᴛᴇ
-│ ⑄ ᴇɴᴄ <ᴄᴏᴅᴇ>
-│ ⑄ ᴇɴᴄʀʏᴘᴛ <ᴄᴏᴅᴇ>
-│ ⑄ ᴀɪ 
-│ ⑄ ᴠᴠ
-│ ⑄ ɢᴇᴛꜱᴇꜱꜱɪᴏɴ 
-│ ⑄ ᴀᴜᴛᴏꜱᴛᴀᴛᴜꜱ
-│ ⑄ ʟɪꜱᴛʙʟᴏᴄᴋ 
-│ ⑄ ᴅᴇᴠɪᴄᴇ 
-│ ⑄ ɢᴇᴛɪᴘ
+┏─『 \`𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃𝐄𝐑𝐒\` 』
+│ ⑄ ᴛɪᴋᴛᴏᴋ
+│ ⑄ ꜰᴀᴄᴇʙᴏᴏᴋ 
+│ ⑄ ɪɴꜱᴛᴀɢʀᴀᴍ 
+│ ⑄ ʏᴛꜱᴇᴀʀᴄʜ
+│ ⑄ ʏᴛꜱ
+│ ⑄ ᴘʟᴀʏ 
+│ ⑄ ꜱᴏɴɢ
+│ ⑄ ʏᴛᴠɪᴅᴇᴏꜱ 
 ┗─────────────❐
 
 ┏─『 \`𝐆𝐑𝐎𝐔𝐏 𝐌𝐄𝐍𝐔\` 』
@@ -726,14 +724,19 @@ case 'allmenu': {
 │ ⑄ ʟᴇᴀᴠᴇɢᴄ
 ┗─────────────❐
 
-┏─『 \`𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃𝐄𝐑𝐒\` 』
-│ ⑄ ᴛɪᴋᴛᴏᴋ
-│ ⑄ ʏᴛꜱᴇᴀʀᴄʜ
-│ ⑄ ʏᴛꜱ
-│ ⑄ ᴘʟᴀʏ 
-│ ⑄ ꜱᴏɴɢ
-│ ⑄ ʏᴛᴠɪᴅᴇᴏꜱ 
+┏─『 \`𝐓𝐎𝐎𝐋𝐒 𝐌𝐄𝐍𝐔\` 』
+│ ⑄ ᴜᴘᴅᴀᴛᴇ
+│ ⑄ ᴇɴᴄ <ᴄᴏᴅᴇ>
+│ ⑄ ᴇɴᴄʀʏᴘᴛ <ᴄᴏᴅᴇ>
+│ ⑄ ᴀɪ 
+│ ⑄ ᴠᴠ
+│ ⑄ ɢᴇᴛꜱᴇꜱꜱɪᴏɴ 
+│ ⑄ ᴀᴜᴛᴏꜱᴛᴀᴛᴜꜱ
+│ ⑄ ʟɪꜱᴛʙʟᴏᴄᴋ 
+│ ⑄ ᴅᴇᴠɪᴄᴇ 
+│ ⑄ ɢᴇᴛɪᴘ
 ┗─────────────❐
+
 
 ┏─『 \`𝐅𝐔𝐍 𝐌𝐄𝐍𝐔\` 』
 │ ⑄ ʜᴅᴠɪᴅᴇᴏ <ʀᴇᴘʟʏ ɪᴍᴀɢᴇ>
@@ -928,7 +931,7 @@ case 'unmute': {
 }
 case 'aza': {
     let bankDetails = `*BANK DETAILS*\n` +
-                      `🚹 _*BOLAJI*_\n\n` +
+                      `💕 _*BOLAJI*_\n\n` +
                       `🔢 7041039367\n\n` +
                       `🏦 _*PALMPAY*_\n` +
                       `*SEND SCREENSHOT AFTER PAYMENT*`;
@@ -1347,6 +1350,97 @@ case 'svcontact': {
 
     break;
 }
+case 'sc':
+case 'script':
+case 'channel':
+case 'repo': {
+  const url = "https://l.top4top.io/p_32188bbq00.jpg";
+
+  let msg = generateWAMessageFromContent(
+    m.chat,
+    {
+      viewOnceMessage: {
+        message: {
+          interactiveMessage: {
+            body: {
+              text: `> ʜᴇʏ ᴛʜᴇʀᴇ ${pushname}`
+            },
+            carouselMessage: {
+              cards: [
+                {
+                  header: proto.Message.InteractiveMessage.Header.create({
+                    ...(await prepareWAMessageMedia({ image: { url } }, { upload: byxx.waUploadToServer })),
+                    title: ``,
+                    gifPlayback: true,
+                    subtitle: botname,
+                    hasMediaAttachment: false
+                  }),
+                  body: {
+                    text: `> Click the button below to\n> Join Channel`
+                  },
+                  nativeFlowMessage: {
+                    buttons: [
+                      {
+                        name: "cta_url",
+                        buttonParamsJson: `{"display_text":"JOIN CHANNEL","url":"https://whatsapp.com/channel/0029Vah3fKtCnA7oMPTPJm1h","merchant_url":"https://whatsapp.com/channel/0029Vah3fKtCnA7oMPTPJm1h"}`
+                      },
+                    ],
+                  },
+                },
+                {
+                  header: proto.Message.InteractiveMessage.Header.create({
+                    ...(await prepareWAMessageMedia({ image: { url } }, { upload: byxx.waUploadToServer })),
+                    title: ``,
+                    gifPlayback: true,
+                    subtitle: botname,
+                    hasMediaAttachment: false
+                  }),
+                  body: {
+                    text: `> Click the button below to\n> SCRIPT`
+                  },
+                  nativeFlowMessage: {
+                    buttons: [
+                      {
+                        name: "cta_url",
+                        buttonParamsJson: `{"display_text":"SCRIPT","url":"https://www.mediafire.com/file/6tnew1la8he51wo/𝐁𝐋𝐔𝐄𝐗𝐃𝐄𝐌𝐎𝐍-𝐀𝐔𝐓𝐎.𝐔𝐏𝐃𝐀𝐓𝐄.zip/file","merchant_url":"https://www.mediafire.com/file/6tnew1la8he51wo/𝐁𝐋𝐔𝐄𝐗𝐃𝐄𝐌𝐎𝐍-𝐀𝐔𝐓𝐎.𝐔𝐏𝐃𝐀𝐓𝐄.zip/file"}`
+                      },
+                    ],
+                  },
+                },
+                {
+                  header: proto.Message.InteractiveMessage.Header.create({
+                    ...(await prepareWAMessageMedia({ image: { url } }, { upload: byxx.waUploadToServer })),
+                    title: ``,
+                    gifPlayback: true,
+                    subtitle: botname,
+                    hasMediaAttachment: false
+                  }),
+                  body: {
+                    text: `> Click the button below to\n> check REPO`
+                  },
+                  nativeFlowMessage: {
+                    buttons: [
+                      {
+                        name: "cta_url",
+                        buttonParamsJson: `{"display_text":"REPO","url":"https://github.com/BLUEXDEMONl/BLUEXDEMON-BUG.git","merchant_url":"https://github.com/BLUEXDEMONl/BLUEXDEMON-BUG.git"}`
+                      }
+                    ],
+                  },
+                },
+              ]
+            },
+          },
+        },
+      },
+    },
+    {}
+  );
+
+  await byxx.relayMessage(m.chat, msg.message, {
+    messageId: msg.key.id,
+  });
+}
+break;
 case 'ping': {
     // Capture the start time for ping calculation
     const startTime = performance.now();
@@ -1388,6 +1482,21 @@ case 'device': {
     reply(`The user is using a ${device} device.`);
     break;
 }
+case 'fb':
+case 'facebook':
+           case 'facebookvid': {
+           if (!text)  return reply(`Please send a Facebook video link\n\nEXAMPLE :\n*${prefix + command}* https://fb.watchvhgjhz`) 
+     reply(mess.wait);
+  try {
+    const data = await fetchJson(`https://widipe.com/download/fbdl?url=${encodeURIComponent(text)}`)
+    const tex = `*[ 𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃𝐄𝐃 𝐁𝐘 ${botname} ]*`;
+    const videoBuffer = data.result.HD;
+    byxx.sendMessage(m.chat, { caption: tex, video: { url: videoBuffer} }, { quoted: m });
+  } catch (error) {
+    reply('*AN ERROR OCCURED*')
+  }
+  }
+  break
 case 'tiktok':
 case 'tt': {
     if (!text) return reply(`Example: ${prefix + command} link`);
@@ -1397,7 +1506,7 @@ case 'tt': {
         const vidnya = data.video.noWatermark;
         const caption = `*[ TIKTOK DOWNLOADER ]*
 
-\`𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃𝐄𝐃 𝐁𝐘 𝐁𝐋𝐔𝐄𝐃𝐄𝐌𝐎𝐍\`
+\`𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃𝐄𝐃 𝐁𝐘 ${botname}\`
 `;
         byxx.sendMessage(m.chat, { caption: caption, video: { url: vidnya } }, { quoted: m })
     } catch {
@@ -1410,12 +1519,29 @@ case 'tt': {
 *Shares*: _${response.result.statistics.shareCount ?? ''}_
 *By*: _${response.result.author.nickname ?? ''}_
 
-\`⏤͟͟͞͞ Downloaded By BLUEDEMON\`
+\`𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃𝐄𝐃 𝐁𝐘 ${botname}\`
         `;
         byxx.sendMessage(m.chat, { caption: caption, video: { url: videoUrl } }, { quoted: m })
     }
     break;
 }
+case 'instagram': case 'igdl': case 'ig': case 'igvideo': case 'igimage': case 'igvid': case 'igimg': {
+	  if (!text) return reply(`You need to provide the URL of any Instagram video, post, reel, image`)
+	  reply(mess.wait)
+ try {
+    const data = await fetchJson(`https://widipe.com/download/igdl?url=${encodeURIComponent(text)}`);
+    if (data && data.result && data.result.length > 0 && data.result[0].url) {
+        const hasil = data.result[0].url;
+        const cap = `𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃𝐄𝐃 𝐁𝐘 ${botname}`;
+        byxx.sendMessage(m.chat, {video: {url: hasil}, caption: cap}, {quoted: m});
+    } else {
+        throw new Error('URL not found in result');
+    }
+} catch (error) {
+    console.log("AN ERROR OCCURED");
+}
+}
+break
 case 'ytvideo':
 case 'ytmp4': {
   if (!text) return reply(' [ Example ] :*\n> *.ytmp4 <link youtube>*')
@@ -1503,7 +1629,7 @@ break;
 case 'add': {
     if (!m.isGroup) return reply('This command can only be used in groups.');
 
-    if (!isAdmins && !isGroupOwner) return reply('You need to be a group admin to use this command.');
+    if (!isAdmins) return reply('You need to be a group admin to use this command.');
 
     if (!isBotAdmins) return reply('I need to be an admin to perform this action.');
 
