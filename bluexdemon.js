@@ -1376,7 +1376,7 @@ case 'tt': {
     } catch {
         const response = await fetchJson(`https://api.tiklydown.eu.org/api/download/v3?url=${encodeURIComponent(text)}`);
         const videoUrl = response.result.video;
-        const captionn = `*[ TIKTOK DOWNLOADER ]*
+        const caption = `*[ TIKTOK DOWNLOADER ]*
 
 *Likes*: _${response.result.statistics.likeCount ?? ''}_
 *Comments*: _${response.result.statistics.commentCount ?? ''}_
