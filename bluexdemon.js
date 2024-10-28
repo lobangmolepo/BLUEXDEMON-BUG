@@ -1391,31 +1391,22 @@ case 'tt': {
 }
 case 'ytvideo':
 case 'ytmp4': {
-    if (!text) return reply(`[ Example ] :\n> *.ytmp4 <youtube link>*`);
-    reply(mess.wait);
-
-    try {
-        reply('*The video sending process may take a few minutes for longer videos!*');
-
-        // Fetch the video data from the API
-        let response = await fetch(`https://widipe.com/download/ytdl?url=${text}`);
-        let proces = await response.json();
-
-        if (!proces.result || !proces.result.mp4) {
-            return reply("Failed to retrieve the video. Please check the link or try again later.");
-        }
-
-        let videoUrl = proces.result.mp4;
-        const caption = `*[ YOUTUBE DOWNLOADER ]*\n*Title:* ${proces.result.title}\n\n©${botname}`;
-
-        // Send the video
-        await byxx.sendMessage(m.chat, { video: { url: videoUrl }, caption: caption }, { quoted: m });
-    } catch (e) {
-        console.error(e); // Log detailed error
-        reply('*An error occurred while fetching the video:* ' + e.message);
-    }
+  if (!text) return reply(' [ Example ] :*\n> *.ytmp4 <link youtube>*')
+  reply(mess.wait)
+try {
+  reply('*The video sending process may take 1-3 minutes if the video is too long!*')
+  let proces = await (await fetch(`https://widipe.com/download/ytdl?url=${text}`)).json()
+  let video4 = proces.result.mp4;
+  const ytc = `*[ YOUTUBE DOWNLOADER ]*
+  *title* ${proces.result.title}
+  
+  ©${botname}`;
+  byxx.sendMessage(m.chat, { video: { url: video4 }, caption: ytc }, { quoted: m })
+} catch (e) {
+    reply('*an error occurred :*' + e);
 }
-break;
+}
+break
 case 'tag':
 case 'hidetag': {
     if (!m.isGroup) return reply('This command can only be used in groups.');
