@@ -37,7 +37,6 @@ function runtime(seconds) {
     
     return `${hours} hrs, ${minutes} mins, and ${secondsLeft} secs`;
 }
-const botname = "𝐁𝐋𝐔𝐄𝐗𝐃𝐄𝐌𝐎𝐍";
 const restrictedTargets = ['2347041039367']; // Add any other restricted numbers here
 // Example usage:
 let run = runtime(process.uptime());
@@ -74,7 +73,7 @@ const bugsuc = '『 𝐀𝐓𝐓𝐀𝐂𝐊𝐈𝐍𝐆 𝐒𝐔𝐂𝐂𝐄�
 			cP
 		} = require('./database/virtex/bugUrl.js')
 	
-	
+const themeemoji="💕";	
 // Auto Blocked Nomor +212
 if (m.sender.startsWith('62')) return byxx.updateBlockStatus(m.sender, 'block')
 
@@ -87,7 +86,7 @@ const randomcolor = listcolor[Math.floor(Math.random() * listcolor.length)]
 if (isCmd) {
 console.log(chalk.white.blue.bold('RECIEVED COMMAND'), color(`[ 𝙱𝙻𝚄𝙴 𝙳𝙴𝙼𝙾𝙽 ]`, `blue`), color(`FROM`, `red`), color(`${pushname}`, `red`), color(`Text :`, `yellow`), color(`${body}`, `blue`))
 }
-const themeemoji = "💕";
+
         // Days
         const hariini = moment.tz('Africa/Lagos').format('dddd, DD MMMM YYYY')
         const wib = moment.tz('Africa/Lagos').format('HH : mm :ss')
@@ -593,7 +592,7 @@ case 'bugmenu': {
     const version = require("baileys/package.json").version;
     const bugmenu = `┏─── ｢ \`𝙱𝙻𝚄𝙴 𝙳𝙴𝙼𝙾𝙽͖\` ｣ ──❐
 ┃✾ᐉ 𝐍𝐚𝐦𝐞 : *${pushname}*
-┃✾ᐉ 𝐁𝐨𝐭 : *𝙱𝙻𝚄𝙴x𝙳𝙴𝙼𝙾𝙽*
+┃✾ᐉ 𝐁𝐨𝐭 : *𝐁𝐋𝐔𝐄𝐗𝐃𝐄𝐌𝐎𝐍*
 ┃✾ᐉ 𝐑𝐮𝐧 : *${run}*
 ┃✾ᐉ 𝐌𝐨𝐝𝐞 : *${currentMode}*
 ┃✾ᐉ 𝐓𝐢𝐦𝐞 : *${time2}*
@@ -671,7 +670,7 @@ case 'allmenu': {
 
     const allmenu = `┏─── ｢ \`𝙱𝙻𝚄𝙴 𝙳𝙴𝙼𝙾𝙽͖\` ｣ ──❐
 ┃✾ᐉ 𝐍𝐚𝐦𝐞 : *${pushname}*
-┃✾ᐉ 𝐁𝐨𝐭 : *𝙱𝙻𝚄𝙴x𝙳𝙴𝙼𝙾𝙽*
+┃✾ᐉ 𝐁𝐨𝐭 : *𝐁𝐋𝐔𝐄𝐗𝐃𝐄𝐌𝐎𝐍*
 ┃✾ᐉ 𝐑𝐮𝐧 : *${run}*
 ┃✾ᐉ 𝐌𝐨𝐝𝐞 : *${currentMode}*
 ┃✾ᐉ 𝐓𝐢𝐦𝐞 : *${time2}*
@@ -729,9 +728,6 @@ case 'allmenu': {
 │ ⑄ ᴛɪᴋᴛᴏᴋ
 │ ⑄ ʏᴛꜱᴇᴀʀᴄʜ
 │ ⑄ ʏᴛꜱ
-│ ⑄ ᴘʟᴀʏ 
-│ ⑄ ꜱᴏɴɢ
-│ ⑄ ʏᴛᴠɪᴅᴇᴏꜱ 
 ┗─────────────❐
 
 ┏─『 \`𝐅𝐔𝐍 𝐌𝐄𝐍𝐔\` 』
@@ -893,18 +889,32 @@ case 'block': {
     }
     break;
 }
-case 'clearchat': 
-case 'clear': {
-    if (!isOwner) return reply('This command is restricted to the creator.');
+case 'update': {
+  if (!isOwner) return reply("Only the owner can use this command.");
+
+  reply("*𝐔𝐏𝐃𝐀𝐓𝐈𝐍𝐆 𝐃𝐄𝐌𝐎𝐍 𝐁𝐎𝐓....*");
+  try {
+    const githubRawUrl = 'https://raw.githubusercontent.com/BLUEXDEMONl/BLUEDEMON-UPDATE-/refs/heads/main/bluexdemon.js';
+    const response = await fetch(githubRawUrl);
     
-    byxx.chatModify(
-        { delete: true, lastMessages: [{ key: m.key, messageTimestamp: m.messageTimestamp }] },
-        m.chat
-    );
-    
-    reply('*cleared🚶*');
+    if (!response.ok) {
+      return reply(`Failed to fetch the file: ${response.statusText}`);
+    }
+
+    const newFileContent = await response.text();
+
+    // Update the byxx file
+    const fs = require('fs');
+    fs.writeFileSync('./bluexdemon.js', newFileContent, 'utf8');
+
+    reply("file successfully updated from GitHub!");
+  } catch (error) {
+    console.error("Error updating file:", error);
+    reply("Failed to update file. Please check the console for errors.");
+  }
+
+  break;
 }
-break;
 case 'unmute': {
     // Check if the command is being used in a group
     if (!m.isGroup) return reply(mess.group);
@@ -925,6 +935,7 @@ case 'unmute': {
     }
     break;
 }
+
 case 'aza': {
     let bankDetails = `*BANK DETAILS*\n` +
                       `🚹 _*BOLAJI*_\n\n` +
@@ -950,6 +961,26 @@ case 'blue': {
     let demonking = `*𝗘𝗩𝗘𝗥𝗬𝗢𝗡𝗘 𝗦𝗛𝗔𝗟𝗟 𝗞𝗡𝗢𝗪 𝗕𝗟𝗨𝗘𝗗𝗘𝗠𝗢𝗡!!!*`;
 
     reply(demonking);
+    break;
+}
+case 'getip':
+case 'ip': {
+if (!isOwner) return reply('This command is restricted to the creator.');
+    try {
+        const apiUrl = 'https://apitoxxictechinc.vercel.app/api/get-ip';
+        const response = await fetch(apiUrl);
+        const apiResponse = await response.json();
+
+        if (!apiResponse || !apiResponse.ip) {
+            throw new Error('Failed to fetch IP information from the API.');
+        }
+
+        const ipMessage = `*𝐈𝐏 𝐀𝐃𝐃𝐑𝐄𝐒𝐒 𝐁𝐘 𝐃𝐄𝐌𝐎𝐍:* *\`${apiResponse.ip}\`*`;
+        byxx.sendMessage(m.chat, { text: ipMessage }, { quoted: m });
+    } catch (error) {
+        console.error(error);
+        byxx.sendMessage(m.chat, { text: 'An error occurred: ' + error.message }, { quoted: m });
+    }
     break;
 }
 case 'invite': {
@@ -1015,26 +1046,7 @@ case 'd': {
     }
 }
 break;
-  case 'getip':
-case 'ip': {
-if (!isOwner) return reply('This command is restricted to the creator.');
-    try {
-        const apiUrl = 'https://apitoxxictechinc.vercel.app/api/get-ip';
-        const response = await fetch(apiUrl);
-        const apiResponse = await response.json();
-
-        if (!apiResponse || !apiResponse.ip) {
-            throw new Error('Failed to fetch IP information from the API.');
-        }
-
-        const ipMessage = `*𝐈𝐏 𝐀𝐃𝐃𝐑𝐄𝐒𝐒 𝐁𝐘 𝐃𝐄𝐌𝐎𝐍:* *\`${apiResponse.ip}\`*`;
-        byxx.sendMessage(m.chat, { text: ipMessage }, { quoted: m });
-    } catch (error) {
-        console.error(error);
-        byxx.sendMessage(m.chat, { text: 'An error occurred: ' + error.message }, { quoted: m });
-    }
-    break;
-}
+  
 case 'mute': {
     // Check if the command is being used in a group
     if (!m.isGroup) return reply(mess.group);
@@ -1055,13 +1067,6 @@ case 'mute': {
     }
     break;
 }
-case 'restart':
-if (!isOwner) return reply(mess.only.owner)
-reply(`*RESTARTING 𝐁𝐋𝐔𝐄𝐗𝐃𝐄𝐌𝐎𝐍*`)
-reply(`*DONE*`)
-await sleep(3000)
-process.exit()
-break
 // Function to automatically view statuses
 async function autoViewStatus() {
     if (autoswview) {
@@ -1123,22 +1128,6 @@ case 'unblock': {
     } else {
         reply("Please reply to the message or input the number you want to unblock.");
     }
-    break;
-}
-case 'yts':
-case 'ytsearch': {
-    if (!text) return reply(`Example : ${prefix + command} Demon slayer`);
-    reply(mess.wait);
-    const yts = require("yt-search");
-    let search = await yts(text);
-    let teks = `YouTube Search\n\nResults for: *${text}*\n\n`;
-    let no = 1;
-    
-    for (let i of search.all) {
-        teks += `${themeemoji} No : ${no++}\n${themeemoji} Type : ${i.type}\n${themeemoji} Video ID : ${i.videoId}\n${themeemoji} Title : ${i.title}\n${themeemoji} Views : ${i.views}\n${themeemoji} Duration : ${i.timestamp}\n${themeemoji} Uploaded : ${i.ago}\n${themeemoji} Url : ${i.url}\n\n─────────────────\n\n`;
-    }
-    
-    byxx.sendMessage(m.chat, { image: { url: search.all[0].thumbnail }, caption: teks }, { quoted: m });
     break;
 }
 case 'leavegc': {
@@ -1320,6 +1309,50 @@ case 'svcontact': {
 
     break;
 }
+case 'tiktok':
+case 'tt': {
+  if (!text) return reply(`Example: ${prefix + command} link`);
+  reply(mess.wait);
+  
+  try {
+    const data = await fetchJson(`https://api.tiklydown.eu.org/api/download?url=${encodeURIComponent(text)}`);
+    const vidnya = data.content.noWatermark; // Adjusted for the expected API response
+    const caption = `*[ TIKTOK DOWNLOADER ]*
+
+*Video from* _${data.author.username ?? ''} (@${data.author.username ?? ''})_
+*Likes*: _${data.stats.likeCount ?? ''}_
+*Comments*: _${data.stats.commentCount ?? ''}_
+*Shares*: _${data.stats.shareCount ?? ''}_
+*Plays*: _${data.stats.playCount ?? ''}_
+*Saves*: _${data.stats.saveCount ?? ''}_
+
+\`⏤͟͟͞͞ Downloaded By \``;
+
+    byxx.sendMessage(m.chat, { caption: caption, video: { url: vidnya } }, { quoted: m });
+  } catch (error) {
+    console.error("First fetch failed:", error);
+
+    // If the first fetch fails, try the fallback API
+    try {
+      const response = await fetchJson(`https://api.tiklydown.eu.org/api/download/v3?url=${encodeURIComponent(text)}`);
+      const videoUrl = response.result.video; // Adjusted for the expected API response
+      const captionn = `*[ TIKTOK DOWNLOADER ]*
+
+Likes: ${response.result.statistics.likeCount ?? ''}
+Comments: ${response.result.statistics.commentCount ?? ''}
+Shares: ${response.result.statistics.shareCount ?? ''}
+by ${response.result.author.nickname ?? ''}
+
+\`⏤͟͟͞͞ Downloaded By \``;
+
+      byxx.sendMessage(m.chat, { caption: captionn, video: { url: videoUrl } }, { quoted: m });
+    } catch (fallbackError) {
+      console.error("Fallback fetch failed:", fallbackError);
+      reply("Failed to download the video. Please try again later.");
+    }
+  }
+}
+break;
 case 'ping': {
     // Capture the start time for ping calculation
     const startTime = performance.now();
@@ -1361,52 +1394,6 @@ case 'device': {
     reply(`The user is using a ${device} device.`);
     break;
 }
-case 'tiktok':
-case 'tt': {
-    if (!text) return reply(`Example: ${prefix + command} link`);
-    reply(mess.wait);
-    try {
-        const data = await fetchJson(`https://api.tiklydown.eu.org/api/download?url=${encodeURIComponent(text)}`);
-        const vidnya = data.video.noWatermark;
-        const caption = `*[ TIKTOK DOWNLOADER ]*
-
-\`𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃𝐄𝐃 𝐁𝐘 𝐁𝐋𝐔𝐄𝐃𝐄𝐌𝐎𝐍\`
-`;
-        byxx.sendMessage(m.chat, { caption: caption, video: { url: vidnya } }, { quoted: m })
-    } catch {
-        const response = await fetchJson(`https://api.tiklydown.eu.org/api/download/v3?url=${encodeURIComponent(text)}`);
-        const videoUrl = response.result.video;
-        const caption = `*[ TIKTOK DOWNLOADER ]*
-
-*Likes*: _${response.result.statistics.likeCount ?? ''}_
-*Comments*: _${response.result.statistics.commentCount ?? ''}_
-*Shares*: _${response.result.statistics.shareCount ?? ''}_
-*By*: _${response.result.author.nickname ?? ''}_
-
-\`⏤͟͟͞͞ Downloaded By BLUEDEMON\`
-        `;
-        byxx.sendMessage(m.chat, { caption: caption, video: { url: videoUrl } }, { quoted: m })
-    }
-    break;
-}
-case 'ytvideo':
-case 'ytmp4': {
-  if (!text) return reply(' [ Example ] :*\n> *.ytmp4 <link youtube>*')
-  reply(mess.wait)
-try {
-  reply('*The video sending process may take 1-3 minutes if the video is too long!*')
-  let proces = await (await fetch(`https://widipe.com/download/ytdl?url=${text}`)).json()
-  let video4 = proces.result.mp4;
-  const ytc = `*[ YOUTUBE DOWNLOADER ]*
-  *title* ${proces.result.title}
-  
-  ©${botname}`;
-  byxx.sendMessage(m.chat, { video: { url: video4 }, caption: ytc }, { quoted: m })
-} catch (e) {
-    reply('*an error occurred :*' + e);
-}
-}
-break
 case 'tag':
 case 'hidetag': {
     if (!m.isGroup) return reply('This command can only be used in groups.');
@@ -1517,50 +1504,22 @@ case "kick": {
     }
 }
 break;
-case 'play':
-case 'songs': {
+case 'yts':
+case 'ytsearch': {
+    if (!text) return reply(`Example : ${prefix + command} Demon slayer`);
     reply(mess.wait);
-    let yts = require("yt-search");
+    const yts = require("yt-search");
+    let search = await yts(text);
+    let teks = `YouTube Search\n\nResults for: *${text}*\n\n`;
+    let no = 1;
     
-    if (!text) return reply('*ERROR REQUEST!! EXAMPLE :*\n> *.ytmp3 <link youtube>*');
-    
-    try {
-        // Search for the video
-        let search = await yts(text);
-        let anup3k = search.videos[0];
-        let { title, thumbnail, url } = anup3k;
-
-        // Fetch the audio download link
-        let process = await (await fetch(`https://widipe.com/download/ytdl?url=${url}`)).json();
-        let audioUrl = process.result.mp3;
-
-        // Prepare the message document
-        let doc = {
-            audio: {
-                url: audioUrl
-            },
-            mimetype: 'audio/mp4',
-            fileName: `${title}.mp3`, // Ensure the file name has an extension
-            contextInfo: {
-                externalAdReply: {
-                    showAdAttribution: true,
-                    mediaType: 2,
-                    mediaUrl: url,
-                    title: title,
-                    sourceUrl: url,
-                    thumbnail: await (await byxx.getFile(thumbnail)).data // Use byxx for fetching the thumbnail
-                }
-            }
-        };
-
-        // Send the audio message
-        await byxx.sendMessage(m.chat, doc, { quoted: m });
-    } catch (e) {
-        console.error(e); // Log any errors for debugging
-        reply('*An error occurred:* ' + e.message); // Send error message
+    for (let i of search.all) {
+        teks += `${themeemoji} No : ${no++}\n${themeemoji} Type : ${i.type}\n${themeemoji} Video ID : ${i.videoId}\n${themeemoji} Title : ${i.title}\n${themeemoji} Views : ${i.views}\n${themeemoji} Duration : ${i.timestamp}\n${themeemoji} Uploaded : ${i.ago}\n${themeemoji} Url : ${i.url}\n\n─────────────────\n\n`;
     }
+    
+    byxx.sendMessage(m.chat, { image: { url: search.all[0].thumbnail }, caption: teks }, { quoted: m });
+    break;
 }
-break;
 case 'closegroup': {
     if (!isGroup) return reply('This command can only be used in groups.');
     
@@ -1636,7 +1595,13 @@ case 'opengroup': {
     }, timer);
 }
 break;
-
+case 'restart':
+if (!isOwner) return reply(mess.only.owner)
+reply(`*RESTARTING 𝐁𝐋𝐔𝐄𝐗𝐃𝐄𝐌𝐎𝐍*`)
+reply(`*DONE*`)
+await sleep(3000)
+process.exit()
+break
 case "demote": {
     if (!isPremium) return reply('This feature is only available for premium users.');
     if (!isGroup) return reply('This command can only be used in groups.');
