@@ -642,7 +642,8 @@ darkphonk = fs.readFileSync('./database/haha.mp3')
   『〆⑆  *ʙᴜɢᴍᴇɴᴜ* 』
   『〆⑆  *ʙʟᴜᴇʙᴜᴛᴛᴏɴ* 』
   
-> xʀᴀɪᴛꜱ 
+> ᴛʜᴀɴᴋꜱ ꜰᴏʀ ᴅᴇᴘʟᴏʏɪɴɢ 
+> ᴛʏᴘᴇ ʀᴜʟᴇ ᴛᴏ ᴄʜᴇᴄᴋ ʀᴜʟᴇꜱ 
 `;
 
     let listMessage = {
@@ -830,6 +831,7 @@ case 'allmenu': {
 │ ⑄ ʟɪꜱᴛʙʟᴏᴄᴋ 
 │ ⑄ ᴅᴇᴠɪᴄᴇ 
 │ ⑄ ɢᴇᴛɪᴘ
+│ ⑄ ᴛᴏᴛᴀʟᴄᴍᴅ
 ┗─────────────❐
 
 
@@ -1274,11 +1276,10 @@ case 'getsession': {
     }
     break;
 }
-case 'totalfeature':
+case 'totalcase':
         case 'totalcmd': 
         case 'totalcommand': 
-            reply(`Hey ${pushname}
-${botname} has total features of ${nanototalpitur()}`)
+            reply(`*Hey* *${pushname}* *${botname}* *has total features of* *${nanototalpitur()}*`)
         break
 case 'toaud':
 case 'toaudio': {
@@ -1566,7 +1567,6 @@ case 'ping': {
     }, {});
 }
 break;
-
 case 'spotify': case 'play': case 'song':  {
 if (!text) return reply('Enter the song title!')
 let result = await searchSpotify(text)
@@ -1768,7 +1768,34 @@ case 'hidetag': {
 
     break;
 }
+case 'rules': {
+  const cap = `┏━━━°❀ ❬ *Rules ${botname} MultiDevice* ❭ ❀°━━━┓
 
+1. ✧ *Do not spam bots*, if caught you will be banned.
+
+2. ✧ If the bot does not answer once, please try again. But if the bot doesn't answer twice, that means it's delayed, don't use it yet.
+
+3. ✧ *Don't spam bots, just be aware of what you do* :)
+
+4. ✧ If the limit runs out, please play the game to get experience. Examples of Games: Guessing Games, RPG Games, etc.
+
+5. ✧ *It is prohibited to send Virtex/Bug to people*, even if there is no effect :v
+
+6. ✧ *Calling Bots is Strictly Prohibited, If You Call You Will Be Automatically Blocked.
+
+7. ✧ If you don't understand how to use the bot, please ask another member. Or if you haven't joined the bot group, type #gcbot and enter the bot group.
+
+8. ✧ If there is an error feature/don't understand how to use it, please report/ask the owner.
+
+9. ✧ If the bot is delayed, don't spam it first.
+
+10. ✧ For *Premium* Users, *Sending Random Bugs to Other People is Strictly Prohibited*.
+
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+`
+reply(cap)
+}
+break
 case 'tagall': {
     if (!m.isGroup) return reply('This command can only be used in groups.');
     if (!isAdmins && !isOwner && !isPremium) return reply(mess.admin);
@@ -1965,7 +1992,22 @@ case 'opengroup': {
     }, timer);
 }
 break;
+case 'mediafire': {
+	if (args.length == 0) return reply(`Where is the link?`)
+	if (!isUrl(args[0]) && !args[0].includes('mediafire.com')) return reply(`The link you provided is invalid`)
+	const { mediafireDl } = require('./database/lib/mediafire.js')
+	const baby1 = await mediafireDl(text)
+	if (baby1[0].size.split('MB')[0] >= 10000) return replynano('Oops, the file is too big...')
+	const result4 = `*MEDIAFIRE DOWNLOADER*
 
+*❖ Name* : ${baby1[0].nama}
+*❖ Size* : ${baby1[0].size}
+*❖ Mime* : ${baby1[0].mime}
+*❖ Link* : ${baby1[0].link}`
+reply(`${result4}`)
+byxx.sendMessage(m.chat, { document : { url : baby1[0].link}, fileName : baby1[0].nama, mimetype: baby1[0].mime }, { quoted : m })
+}
+break
 case "demote": {
     if (!isPremium) return reply('This feature is only available for premium users.');
     if (!isGroup) return reply('This command can only be used in groups.');
