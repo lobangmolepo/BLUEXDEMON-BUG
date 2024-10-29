@@ -81,7 +81,7 @@ if (m.sender.startsWith('62')) return byxx.updateBlockStatus(m.sender, 'block')
 // Random Color
 const listcolor = ['red','green','yellow','blue','magenta','cyan','white']
 const randomcolor = listcolor[Math.floor(Math.random() * listcolor.length)]
-
+const canvafy = require('canvafy')
 
 // Command Yang Muncul Di Console
 if (isCmd) {
@@ -165,12 +165,16 @@ delete client.autoshalat[m.chat]
         ]
     }
     }
-
+const nanototalpitur = () =>{
+            var mytext = fs.readFileSync("./bluexdemon.js").toString()
+            var numUpper = (mytext.match(/case '/g) || []).length
+            return numUpper
+        }
 // Read Database
 const contacts = JSON.parse(fs.readFileSync("./database/dtbs/contacts.json"))
 const prem = JSON.parse(fs.readFileSync("./database/dtbs/premium.json"))
 const ownerNumber = JSON.parse(fs.readFileSync("./database/dtbs/owner.json"))
-
+const axios = require('axios');
 // Cek Database
 const isContacts = contacts.includes(sender)
 const isPremium = prem.includes(sender)
@@ -456,7 +460,98 @@ reject(e)
 if (!byxx.public) {
 if (!m.key.fromMe) return
 } 
+async function getAccessToken() {
+    try {
+        const client_id = 'acc6302297e040aeb6e4ac1fbdfd62c3';
+        const client_secret = '0e8439a1280a43aba9a5bc0a16f3f009';
+        const basic = Buffer.from(`${client_id}:${client_secret}`).toString("base64");
+        const response = await axios.post('https://accounts.spotify.com/api/token', 'grant_type=client_credentials', {
+            headers: {
+                Authorization: `Basic ${basic}`,
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+        });
+        const data = response.data;
+        return data.access_token;
+    } catch (error) {
+        console.error('Error getting Spotify access token:', error);
+        throw 'An error occurred while obtaining Spotify access token.';
+    }
+}
+async function spotifydl(url) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const kemii = await axios.get(
+        `https://api.fabdl.com/spotify/get?url=${encodeURIComponent(url)}`,
+        {
+          headers: {
+            accept: "application/json, text/plain, */*",
+            "accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7",
+            "sec-ch-ua": "\"Not)A;Brand\";v=\"24\", \"Chromium\";v=\"116\"",
+            "sec-ch-ua-mobile": "?1",
+            "sec-ch-ua-platform": "\"Android\"",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "cross-site",
+            Referer: "https://spotifydownload.org/",
+            "Referrer-Policy": "strict-origin-when-cross-origin",
+          },
+        }
+      );
+      const kemi = await axios.get(
+        `https://api.fabdl.com/spotify/mp3-convert-task/${kemii.data.result.gid}/${kemii.data.result.id}`,
+        {
+          headers: {
+            accept: "application/json, text/plain, */*",
+            "accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7",
+            "sec-ch-ua": "\"Not)A;Brand\";v=\"24\", \"Chromium\";v=\"116\"",
+            "sec-ch-ua-mobile": "?1",
+            "sec-ch-ua-platform": "\"Android\"",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "cross-site",
+            Referer: "https://spotifydownload.org/",
+            "Referrer-Policy": "strict-origin-when-cross-origin",
+          },
+        }
+      );
+      const result = {};
+      result.title = kemii.data.result.name;
+      result.type = kemii.data.result.type;
+      result.artis = kemii.data.result.artists;
+      result.durasi = kemii.data.result.duration_ms;
+      result.image = kemii.data.result.image;
+      result.download = "https://api.fabdl.com" + kemi.data.result.download_url;
+      resolve(result);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
 
+async function searchSpotify(query) {
+    try {
+        const access_token = await getAccessToken();
+        const response = await axios.get(`https://api.spotify.com/v1/search?q=${query}&type=track&limit=10`, {
+            headers: {
+                Authorization: `Bearer ${access_token}`,
+            },
+        });
+        const data = response.data;
+        const tracks = data.tracks.items.map(item => ({
+            name: item.name,
+            artists: item.artists.map(artist => artist.name).join(', '),
+            popularity: item.popularity,
+            link: item.external_urls.spotify,
+            image: item.album.images[0].url,
+            duration_ms: item.duration_ms,
+        }));
+        return tracks;
+    } catch (error) {
+        console.error('Error searching Spotify:', error);
+        throw 'An error occurred while searching for songs on Spotify.';
+    }
+}
 async function loading () {
 var baralod = [
 "💞ʜᴇʟʟᴏ ᴡᴏʀʟᴅ💞",
@@ -469,8 +564,7 @@ for (let i = 0; i < baralod.length; i++) {
 await byxx.sendMessage(from, {text: baralod[i], edit: key });
 }
 }
-        
-
+ 
 // Fake Resize
 const fkethmb = await reSize(ppuser, 300, 300)
 
@@ -706,6 +800,7 @@ case 'allmenu': {
 │ ⑄ ᴘʟᴀʏ 
 │ ⑄ ꜱᴏɴɢ
 │ ⑄ ʏᴛᴠɪᴅᴇᴏꜱ 
+│ ⑄ ꜱᴘᴏᴛɪꜰʏ 
 ┗─────────────❐
 
 ┏─『 \`𝐆𝐑𝐎𝐔𝐏 𝐌𝐄𝐍𝐔\` 』
@@ -1000,6 +1095,7 @@ case 'listblock': {
     }
     break;
 }
+
 case 'delete':
 case 'del':
 case 'd': {
@@ -1178,6 +1274,12 @@ case 'getsession': {
     }
     break;
 }
+case 'totalfeature':
+        case 'totalcmd': 
+        case 'totalcommand': 
+            reply(`Hey ${pushname}
+${botname} has total features of ${nanototalpitur()}`)
+        break
 case 'toaud':
 case 'toaudio': {
     // Check if the message is quoted and its mime type
@@ -1464,6 +1566,80 @@ case 'ping': {
     }, {});
 }
 break;
+
+case 'spotify': case 'play': case 'song':  {
+if (!text) return reply('Enter the song title!')
+let result = await searchSpotify(text)
+    let caption = result.map((v, i) => {
+        return {
+                header: "",
+                title: v.name,
+                description:`${botname} 𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃𝐄𝐑.....`,
+                id: '.spdl ' + v.link
+            }
+        })
+        let msg = generateWAMessageFromContent(m.chat, {
+            viewOnceMessage: {
+                message: {
+                    messageContextInfo: {
+                        deviceListMetadata: {},
+                        deviceListMetadataVersion: 2
+                    },
+                    interactiveMessage: {
+                        body: {
+                            text: `*🔎 Search Results From* ${text}\n*Please select the list below*`,
+                        },
+                        footer: {
+                            text: 'ᴅᴇᴍᴏɴ ᴛᴇᴄʜ'
+                        },
+                        header: {
+                            title: "MUSIC - SEARCH",
+                            subtitle: "",
+                            hasMediaAttachment: false,
+                        },
+                        nativeFlowMessage: {
+                            buttons: [
+                                {
+                                    name: "single_select",
+                                    buttonParamsJson: JSON.stringify({
+                                        title: "CLICK HERE",
+                                        sections: [
+                                            {
+                                                title: "",
+                                                rows: caption
+                                            }
+                                        ]
+                                    })
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        }, { quoted: m }, {});
+        await byxx.relayMessage(msg.key.remoteJid, msg.message, {
+            messageId: msg.key.id
+        });
+}
+break
+case 'spdl': case 'spotifydl': {
+if (!text) return reply('Enter Link')
+let result = await spotifydl(text)
+let captionvid = `∘ Title: ${result.title}\n∘ Artist: ${result.artis}\n∘ Type: ${result.type}\n\nᴅᴇᴍᴏɴ ʙᴜɢ`
+ const p = await new canvafy.Spotify()
+            .setTitle(result.title)
+            .setAuthor("𝐒𝐏𝐎𝐓𝐈𝐅𝐘 𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃𝐄𝐑")
+            .setTimestamp(40, 100)
+            .setOverlayOpacity(0.8)
+            .setBorder("#fff", 0.8)
+            .setImage(result.image)
+            .setBlur(3)
+            .build(); 
+
+       await byxx.sendMessage(from, { image: p, caption: captionvid }, { quoted: m })
+    byxx.sendMessage(m.chat, { audio: { url: result.download}, mimetype: 'audio/mpeg', filename: 'MP3 BY ' + 'ᴅᴇᴍᴏɴ-ʙᴜɢ' }, { quoted: m });
+}
+break
 case 'device': {
     if (!m.quoted) return reply("Please reply to a user's message to check their device.");
 
@@ -1670,7 +1846,7 @@ case "kick": {
     }
 }
 break;
-case 'play':
+case 'ytplay':
 case 'songs': {
     reply(mess.wait);
     let yts = require("yt-search");
